@@ -122,8 +122,8 @@ services:
       - "9093:9093"
       - "9091:9091"
     volumes:
-      - .nginx/proxy.conf:/etc/nginx/proxy.conf
-      - .nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/proxy.conf:/etc/nginx/proxy.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     restart: unless-stopped
     networks:
       - monitor-net
