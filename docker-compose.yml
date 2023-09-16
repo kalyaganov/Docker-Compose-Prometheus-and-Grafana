@@ -113,19 +113,17 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  caddy:
-    image: caddy:2.7.4
-    container_name: caddy
+  nginx:
+    image: nginx:1.25.2
+    container_name: nginx
     ports:
       - "3000:3000"
       - "9090:9090"
       - "9093:9093"
       - "9091:9091"
     volumes:
-      - ./caddy:/etc/caddy
-    environment:
-      - ADMIN_USER=${ADMIN_USER}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - .nginx/proxy.conf:/etc/nginx/proxy.conf:ro
+      - .nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     restart: unless-stopped
     networks:
       - monitor-net
